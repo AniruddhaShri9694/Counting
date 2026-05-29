@@ -1,0 +1,32 @@
+/* Global styles and mobile-friendly defaults */
+* { box-sizing: border-box }
+html, body { height: 100%; margin: 0 }
+body {
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+	-webkit-font-smoothing:antialiased;
+	-moz-osx-font-smoothing:grayscale;
+	background: linear-gradient(270deg, #fffaf0 0%, #ffe1c6 25%, #ffd3e0 50%, #dff7ff 75%, #f0fff9 100%);
+	background-size: 400% 400%;
+	animation: gradientShift 14s ease infinite;
+	color: #222;
+	-webkit-tap-highlight-color: transparent;
+	overscroll-behavior-y: contain;
+}
+
+@keyframes gradientShift {
+	0% { background-position: 0% 50%; }
+	50% { background-position: 100% 50%; }
+	100% { background-position: 0% 50%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	body { animation: none !important; }
+}
+
+button { font-family: inherit }
+
+/* Utility: center content for small screens */
+.app-container { padding-bottom: env(safe-area-inset-bottom) }
+
+/* Make images and assets responsive */
+img { max-width: 100%; height: auto }

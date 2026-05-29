@@ -1,0 +1,28 @@
+<div class="app-container">
+
+  <header class="topbar">
+    <div class="brand">
+      <h1>🕉 Jap Counter</h1>
+      <small>Hare Krishna</small>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="counter-circle" (click)="increaseCount(); animate()" role="button" tabindex="0" (keydown.enter)="increaseCount(); animate()" [class.pulse]="pulsing">
+      <h2>{{ count }}</h2>
+      <span class="tap">Tap</span>
+    </div>
+
+    <div class="goal-card">
+      <h3>Remaining to 108</h3>
+      <p>{{ remaining }}</p>
+    </div>
+
+    <button class="reset-btn" (click)="resetCount()" aria-label="Reset Counter">Reset Counter</button>
+  </main>
+
+  <footer class="footer">
+    <small>Built for small screens • Tap the circle</small>
+  </footer>
+
+</div>

@@ -1,0 +1,131 @@
+:root {
+	--bg: linear-gradient(180deg, #fffaf0 0%, #fffefb 100%);
+	--accent: #7b3fe4;
+	--accent-2: #ff6b6b;
+	--text: #222;
+}
+
+.app-container {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	padding: env(safe-area-inset-top) 16px env(safe-area-inset-bottom);
+	color: var(--text);
+}
+
+.topbar {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	padding: 12px 8px;
+	box-sizing: border-box;
+}
+
+.brand h1 {
+	margin: 0;
+	font-size: 1.2rem;
+}
+.brand small { display:block; opacity:0.95; font-size:0.9rem; color: var(--text) }
+
+.main {
+	flex: 1 1 auto;
+	width: 100%;
+	max-width: 520px;
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+	justify-content:center;
+	gap: 18px;
+	padding: 8px;
+}
+
+.counter-circle {
+	--size: min(72vmin, 360px);
+	width: var(--size);
+	height: var(--size);
+	border-radius: 50%;
+	background: radial-gradient(circle at 30% 20%, #fff, #f6f0ff 40%, #efe7ff 100%);
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+	justify-content:center;
+	box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+	user-select: none;
+	touch-action: manipulation;
+}
+
+.counter-circle.pulse {
+	animation: pulse-zoom 360ms cubic-bezier(.2,.9,.2,1);
+	box-shadow: 0 16px 36px rgba(123,63,228,0.28), 0 0 0 8px rgba(123,63,228,0.06) inset;
+}
+
+@keyframes pulse-zoom {
+	0% { transform: scale(1); }
+	40% { transform: scale(1.06); }
+	100% { transform: scale(1); }
+}
+
+.counter-circle h2 {
+	margin: 0;
+	font-size: clamp(2.4rem, 10vw, 4.8rem);
+	letter-spacing: -0.02em;
+}
+.counter-circle .tap { margin-top:8px; opacity:0.95; color: var(--text); font-weight:600; font-size:0.95rem }
+
+/* ensure counter number stays legible on all backgrounds */
+.counter-circle h2 { color: var(--text); text-shadow: 0 1px 0 rgba(255,255,255,0.5) }
+
+.goal-card {
+	width: 92%;
+	max-width: 420px;
+	background: rgba(255,255,255,0.6);
+	backdrop-filter: blur(6px);
+	border-radius: 12px;
+	padding: 12px 16px;
+	text-align:center;
+	box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+}
+.goal-card h3 { margin:0; font-size:0.95rem; color: #111 }
+.goal-card p { font-size:1.6rem; margin:6px 0 0; color: #111; font-weight:700 }
+
+.reset-btn {
+	display: block;
+	margin: 10px auto 6px;
+	width: calc(100% - 32px);
+	max-width: 420px;
+	background: linear-gradient(90deg, #5c2bd8, #ff4f79);
+	color: #ffffff;
+	border: none;
+	padding: 12px 14px;
+	border-radius: 12px;
+	font-weight: 700;
+	box-shadow: 0 12px 28px rgba(92,43,216,0.18), 0 6px 18px rgba(0,0,0,0.06) inset;
+	text-shadow: 0 2px 6px rgba(0,0,0,0.36);
+	font-size: 1rem;
+	z-index: 50;
+}
+
+/* Keep a floating action on larger screens */
+@media (min-width: 900px) {
+	.reset-btn { position: fixed; right: 36px; bottom: 36px; width: auto; border-radius:999px }
+}
+
+.reset-btn:active {
+	transform: translateY(1px) scale(0.995);
+	box-shadow: 0 8px 20px rgba(92,43,216,0.14);
+}
+
+.footer { width:100%; text-align:center; padding:12px 8px; opacity:0.8 }
+.footer small { color: var(--text); opacity:0.95 }
+
+@media (prefers-reduced-motion: no-preference) {
+	.counter-circle { transition: transform 160ms ease; }
+	.counter-circle:active { transform: scale(0.98); }
+}
+
+@media (min-width: 900px) {
+	.app-container { padding: 36px }
+	.fab.reset-btn { right: 36px; bottom: 36px }
+}
