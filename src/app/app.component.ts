@@ -13,13 +13,19 @@ export class AppComponent implements OnInit {
   count = 0;
   remaining = 108;
   pulsing = false;
+  malaCount = 0;
 
   ngOnInit(): void {
-    const saved = localStorage.getItem('japCount');
+    const savedCount = localStorage.getItem('japCount');
+    const savedMala = localStorage.getItem('malaCount');
 
-    if (saved) {
-      this.count = Number(saved);
+    if (savedCount) {
+      this.count = Number(savedCount);
       this.calculateRemaining();
+    }
+
+    if (savedMala) {
+      this.malaCount = Number(savedMala);
     }
   }
 
@@ -29,8 +35,16 @@ export class AppComponent implements OnInit {
     // short, snappy vibration pattern for tactile feedback
     try { navigator.vibrate?.([30]); } catch {}
 
-    localStorage.setItem('japCount', this.count.toString());
+    // Check if we completed a mala (108 japa)
+    if (this.count % 108 === 0) {
+      this.malaCount++;
+      localStorage.setItem('malaCount', this.malaCount.toString());
+      
+      // Extra vibration feedback for completing a mala
+      try { navigator.vibrate?.([100, 50, 100]); } catch {}
+    }
 
+    localStorage.setItem('japCount', this.count.toString());
     this.calculateRemaining();
   }
 
@@ -47,17 +61,24 @@ export class AppComponent implements OnInit {
     }
   }
 
+  getCurrentJapa(): number {
+    const japa = this.count % 108;
+    return japa === 0 ? 108 : japa;
+  }
+
   resetCount(): void {
-    const confirmReset = confirm('Are you sure you want to reset?');
+    const confirmReset = confirm('Are you sure you want to reset both Japa and Mala counters?');
 
     if (confirmReset) {
       // vibration feedback for reset action
       try { navigator.vibrate?.([60,30,20]); } catch {}
 
       this.count = 0;
+      this.malaCount = 0;
       this.remaining = 108;
 
       localStorage.removeItem('japCount');
+      localStorage.removeItem('malaCount');
     }
   }
 }
