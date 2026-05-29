@@ -72,23 +72,82 @@
 	font-size: clamp(2.4rem, 10vw, 4.8rem);
 	letter-spacing: -0.02em;
 }
+
+.counter-content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 4px;
+}
+
+.mala-label {
+	font-size: 0.85rem;
+	opacity: 0.8;
+	font-weight: 500;
+	letter-spacing: 0.5px;
+}
+
 .counter-circle .tap { margin-top:8px; opacity:0.95; color: var(--text); font-weight:600; font-size:0.95rem }
 
 /* ensure counter number stays legible on all backgrounds */
 .counter-circle h2 { color: var(--text); text-shadow: 0 1px 0 rgba(255,255,255,0.5) }
 
-.goal-card {
-	width: 92%;
+.stats-container {
+	width: 100%;
 	max-width: 420px;
+	display: flex;
+	gap: 12px;
+	justify-content: center;
+	align-items: stretch;
+	box-sizing: border-box;
+	padding: 0 8px;
+}
+
+.mala-card {
+	flex: 1;
+	background: linear-gradient(135deg, rgba(123,63,228,0.1) 0%, rgba(123,63,228,0.05) 100%);
+	backdrop-filter: blur(6px);
+	border-radius: 12px;
+	padding: 12px 16px;
+	text-align: center;
+	box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+	border: 1px solid rgba(123,63,228,0.15);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.mala-card h3 {
+	margin: 0;
+	font-size: 0.95rem;
+	color: var(--accent);
+	font-weight: 600;
+}
+
+.mala-card p {
+	font-size: 1.8rem;
+	margin: 8px 0 0;
+	color: var(--accent);
+	font-weight: 700;
+}
+
+.goal-card {
+	flex: 1;
 	background: rgba(255,255,255,0.6);
 	backdrop-filter: blur(6px);
 	border-radius: 12px;
 	padding: 12px 16px;
 	text-align:center;
 	box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
-.goal-card h3 { margin:0; font-size:0.95rem; color: #111 }
-.goal-card p { font-size:1.6rem; margin:6px 0 0; color: #111; font-weight:700 }
+
+.goal-card h3 { margin:0; font-size:0.95rem; color: #111; font-weight: 600; }
+.goal-card p { font-size:1.8rem; margin:8px 0 0; color: #111; font-weight:700 }
 
 .reset-btn {
 	display: block;
