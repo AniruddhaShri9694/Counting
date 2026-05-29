@@ -4,7 +4,7 @@
     {
       "src": "package.json",
       "use": "@vercel/static-build",
-      "config": { "distDir": "dist/chanting_counter" }
+      "config": { "distDir": "dist/chanting_counter/browser" }
     }
   ],
   "routes": [
