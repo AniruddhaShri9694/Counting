@@ -9,13 +9,23 @@
 
   <main class="main">
     <div class="counter-circle" (click)="increaseCount(); animate()" role="button" tabindex="0" (keydown.enter)="increaseCount(); animate()" [class.pulse]="pulsing">
-      <h2>{{ count }}</h2>
+      <div class="counter-content">
+        <h2>{{ getCurrentJapa() }}</h2>
+        <span class="mala-label">Japa</span>
+      </div>
       <span class="tap">Tap</span>
     </div>
 
-    <div class="goal-card">
-      <h3>Remaining to 108</h3>
-      <p>{{ remaining }}</p>
+    <div class="stats-container">
+      <div class="mala-card">
+        <h3>Mala</h3>
+        <p>{{ malaCount }}</p>
+      </div>
+
+      <div class="goal-card">
+        <h3>Remaining to 108</h3>
+        <p>{{ remaining }}</p>
+      </div>
     </div>
 
     <button class="reset-btn" (click)="resetCount()" aria-label="Reset Counter">Reset Counter</button>
