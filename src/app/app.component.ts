@@ -32,8 +32,9 @@ export class AppComponent implements OnInit {
   increaseCount(): void {
     this.count++;
 
-    // short, snappy vibration pattern for tactile feedback
-    try { navigator.vibrate?.([30]); } catch {}
+    // Progressive vibration pattern based on japa count
+    const currentJapa = this.count % 108;
+    this.provideProgressiveVibration(currentJapa);
 
     // Check if we completed a mala (108 japa)
     if (this.count % 108 === 0) {
@@ -41,11 +42,32 @@ export class AppComponent implements OnInit {
       localStorage.setItem('malaCount', this.malaCount.toString());
       
       // Extra vibration feedback for completing a mala
-      try { navigator.vibrate?.([100, 50, 100]); } catch {}
+      try { navigator.vibrate?.([150, 80, 150, 80, 150]); } catch {}
     }
 
     localStorage.setItem('japCount', this.count.toString());
     this.calculateRemaining();
+  }
+
+  provideProgressiveVibration(currentJapa: number): void {
+    let vibrationPattern: number[] = [30]; // Default light vibration
+
+    // Increase vibration intensity based on progress through the mala
+    if (currentJapa <= 27) {
+      // First quarter: light vibrations
+      vibrationPattern = [30];
+    } else if (currentJapa <= 54) {
+      // Second quarter: medium vibrations
+      vibrationPattern = [50, 30];
+    } else if (currentJapa <= 81) {
+      // Third quarter: stronger vibrations
+      vibrationPattern = [70, 30, 70];
+    } else if (currentJapa <= 107) {
+      // Fourth quarter: intense vibrations
+      vibrationPattern = [100, 40, 100];
+    }
+
+    try { navigator.vibrate?.(vibrationPattern); } catch {}
   }
 
   animate(): void {
